@@ -1,21 +1,19 @@
 import express from "express";
-import { IncomingForm } from "formidable";
+
+import FileService from "@/services/FileService";
 
 const router: express.Router = express.Router();
+const fileService = new FileService();
 
 router.use("/", express.static(FileService.uploadDirectory));
-  const form = new IncomingForm();
 
-  form.parse(req, (err, fields, files) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    console.log(fields);
-    console.log(files);
-
-    res.status(200).send("File was successfully submitted!");
-  });
+router.post("/", async (req, res, next) => {
+  try {
+    const fileUrl = await fileService.handleUpload(req);
+    res.status(200).send(`${process.env.DOMAIN}/api/${fileUrl}`);
+  } catch (e) {
+    res.status(500).send(e);
+  }
 });
 
 export default router;

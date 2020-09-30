@@ -14,7 +14,7 @@ class StorageApi {
 
     app.use(cors());
     app.use("/", formRouter);
-    app.use("/api/file", fileRouter);
+    app.use("/api/files", fileRouter);
 
     app.listen(StorageApi.port, () => {
       console.log(`Server listening on http://localhost:${StorageApi.port} ...`);

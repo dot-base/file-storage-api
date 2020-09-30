@@ -3,7 +3,7 @@ import { IncomingForm } from "formidable";
 
 const router: express.Router = express.Router();
 
-router.post("/", (req, res, next) => {
+router.use("/", express.static(FileService.uploadDirectory));
   const form = new IncomingForm();
 
   form.parse(req, (err, fields, files) => {

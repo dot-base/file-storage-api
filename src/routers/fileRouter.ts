@@ -7,7 +7,7 @@ const fileService = new FileService();
 
 router.use("/", express.static(FileService.uploadDirectory));
 
-router.post("/", async (req, res, next) => {
+router.post("/", async (req, res) => {
   try {
     const fileUrl = await fileService.handleUpload(req);
     res.status(200).send(`${process.env.DOMAIN}/api/${fileUrl}`);

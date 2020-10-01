@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 
-import formRouter from "@/routers/formRouter";
 import fileRouter from "@/routers/fileRouter";
 
 class StorageApi {
@@ -13,7 +12,6 @@ class StorageApi {
     const app = express();
 
     app.use(cors());
-    app.use("/", formRouter);
     app.use("/api/files", fileRouter);
 
     app.listen(StorageApi.port, () => {

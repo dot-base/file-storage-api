@@ -19,6 +19,12 @@ Want a File Storage API of your own? The easiest way is to deploy our docker con
 
 
 ### Deployment
+1. Set the `DOMAIN` environment variable. e.g.:
+    ```
+    export DOMAIN=localhost:3000 // or
+    export DOMAIN=github.com
+    ```
+1. [optional] Set `INSECURE` to `true` if you are NOT using HTTPS.
 1. Start the container with a single command
     ```
     docker run --name file-storage-api -p 3000:3000 -d ghcr.io/dot-base/file-storage-api:latest
@@ -38,6 +44,10 @@ This project is written in Typescript. For an introduction into the language and
 1. Install all dependencies
     ```
     npm install
+    ```
+1. Set the `DOMAIN` environment variable. e.g.:
+    ```
+    export DOMAIN=localhost:3000
     ```
 1. Start the development server
     ```

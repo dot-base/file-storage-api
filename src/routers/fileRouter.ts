@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
     const filePath = await fileService.handleUpload(req);
     const protocol =
       process.env.NODE_ENV === "development" || process.env.INSECURE ? "http://" : "https://";
-    const fileUrl = new URL(filePath, `${protocol}${process.env.DOMAIN}/api/`);
+    const fileUrl = new URL(filePath, protocol + process.env.DOMAIN + "/api/files/");
     res.status(200).send(fileUrl.href);
   } catch (e) {
     res.status(500).send(e);

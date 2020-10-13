@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import { IncomingForm, Files, File } from "formidable";
 import { Request } from "express";
 
@@ -53,6 +54,6 @@ export default class FileService {
       );
     }
 
-    return file.path;
+    return path.basename(file.path);
   }
 }

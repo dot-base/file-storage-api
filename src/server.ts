@@ -17,7 +17,7 @@ class StorageApi {
   private async startApiServer() {
     const app = express();
 
-    app.use(cors());
+    if (StorageApi.sentryIsEnabled) {
       Sentry.init({
         dsn: process.env.SENTRY_DSN,
         integrations: [
@@ -32,6 +32,8 @@ class StorageApi {
       app.use(Sentry.Handlers.tracingHandler());
     }
 
+    app.use(cors());
+
     app.use("/api/files", fileRouter);
 
     if (StorageApi.sentryIsEnabled) {
@@ -39,7 +41,7 @@ class StorageApi {
     }
 
     app.listen(StorageApi.port, () => {
-      console.log(`Server listening on http://localhost:${StorageApi.port} ...`);
+      console.log(`Server listening on ${StorageApi.port}`);
     });
   }
 

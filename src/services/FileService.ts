@@ -31,7 +31,7 @@ export default class FileService {
   }
 
   private static filetypeIsWhitelisted(file: File): boolean {
-    return file.path.match(/\.(mp4|jpg|json|pdf|png)$/i) ? true : false;
+    return file.path.match(/\.(mp4|jpg|json|pdf|ply|png)$/i) ? true : false;
   }
 
   constructor() {
@@ -50,7 +50,7 @@ export default class FileService {
     if (!FileService.filetypeIsWhitelisted(file)) {
       fs.unlinkSync(file.path);
       throw new Error(
-        "Invalid file type. The server only accepts files with one the following extensions: jpg, json, mp4, pdf or png."
+        "Invalid file type. The server only accepts files with one the following extensions: jpg, json, mp4, pdf, ply or png."
       );
     }
 
